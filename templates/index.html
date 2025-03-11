@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pac-Man Food Learning</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+</head>
+<body>
+    <div class="pacman">
+        <img src="{{ url_for('static', filename='images/pacman.png') }}" alt="Pac-Man">
+        <h1>Pac-Man's Food Adventure!</h1>
+        <p>Click on a food to learn a fun fact!</p>
+    </div>
+
+    <div class="food-container">
+        {% for food in foods %}
+        <div class="food" onclick="showFact('{{ food.fact }}')">
+            <img src="{{ url_for('static', filename='images/' + food.name.lower() + '.png') }}" alt="{{ food.name }}">
+            <p>{{ food.name }}</p>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div id="fact-box" class="hidden">
+        <p id="fact-text"></p>
+        <button onclick="hideFact()">Close</button>
+    </div>
+</body>
+</html>
